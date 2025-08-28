@@ -633,5 +633,49 @@
         }
     });
 </script>
+
+<!-- Lazy-load images: use a low-res placeholder, then load real image when near viewport -->
+<script>
+(function(){
+  const placeholder = 'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"></svg>';
+  const imgs = document.querySelectorAll('.metaskool-world-image');
+  imgs.forEach(img => {
+    if (!img.dataset.src) {
+      img.dataset.src = img.src; // store real src
+      img.src = placeholder; // tiny placeholder
+      img.loading = 'lazy';
+    }
+  });
+
+  function loadImg(img){
+    const src = img.dataset.src;
+    if (!src) return;
+    const newImg = new Image();
+    newImg.src = src;
+    newImg.decoding = 'async';
+    newImg.onload = () => {
+      img.src = src;
+    };
+    newImg.onerror = () => {
+      img.src = src; // try anyway on error
+    };
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadImg(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin: '200px'});
+    imgs.forEach(i => io.observe(i));
+  } else {
+    // no IntersectionObserver, load all
+    imgs.forEach(loadImg);
+  }
+})();
+</script>
 </body>
 </html>
