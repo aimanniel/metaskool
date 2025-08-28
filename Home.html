@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SSTP Hubs | MetaSkool</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<style>
+		:root {
+			--ukm-blue: #003366;
+			--ukm-red: #c00;
+	body { background: #fff; font-family: 'Roboto', Arial, sans-serif; color: #333; margin:0; padding:0 }
+	.metaskool-container { padding: 4rem 0; max-width:1200px; margin:0 auto }
+	.metaskool-header { text-align:center; margin-bottom:2.5rem }
+	.metaskool-header h1 { font-family: 'Montserrat', sans-serif; color:var(--ukm-blue); font-size:2.4rem }
+		.metaskool-worlds-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; padding:0 1rem }
+		.metaskool-world-card {
+			background:#fff;
+			border-radius:8px;
+			overflow:hidden;
+			box-shadow:0 6px 18px rgba(0,0,0,0.06);
+			border:1px solid rgba(0,0,0,0.04);
+			display:flex;
+			flex-direction:column;
+			transition:transform .18s ease, box-shadow .18s ease;
+		}
+		.metaskool-world-card:hover{ transform:translateY(-6px); box-shadow:0 16px 30px rgba(0,0,0,0.12) }
+	.metaskool-world-image { width:100%; height:240px; object-fit:cover }
+	/* Let content size naturally; remove forced stretching so buttons sit right after creator */
+	.metaskool-world-content { padding:0.9rem 1rem; display:flex; flex-direction:column; gap:0.5rem; align-items:flex-start }
+		.metaskool-world-title { font-family:'Montserrat',sans-serif; color:var(--ukm-blue); font-size:1.15rem; margin:0 0 0.4rem 0 }
+		.metaskool-world-creator { display:inline-block; background:var(--ukm-blue); color:#fff; padding:0.45rem 0.9rem; border-radius:999px; font-size:0.88rem; margin-bottom:0.6rem }
+	.metaskool-more-button { display:inline-flex; width:100%; justify-content:center; align-items:center; background:#fff; color:var(--ukm-blue); border:2px solid var(--ukm-blue); padding:0.5rem; border-radius:999px; text-decoration:none; font-weight:600 }
+	.metaskool-more-button:hover { background:var(--ukm-blue); color:#fff; }
+	@media(max-width:768px){ .metaskool-worlds-grid{grid-template-columns:1fr} .metaskool-world-image{height:220px} }
+	</style>
+</head>
+<body>
+<div class="metaskool-container">
+	<header class="metaskool-header">
+		<h1>SSTP Hubs</h1>
+		<p style="color:var(--dark-gray);">Click a hub to open its school world list.</p>
+	</header>
+
+	<div class="metaskool-worlds-grid">
+		<!-- SSTP Labuan -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/10/Screenshot-2024-10-26-152231-1024x390.png" alt="SSTP Labuan HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Labuan HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP Labuan</div>
+				<p class="metaskool-world-description">Welcome to the SSTP Labuan HQ—a central hub in the metaverse designed by selected Labuan schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-labuan.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Melaka -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/11/SSTP-Melaka-on-11-14-24-at-10.06-AM-1024x508.png" alt="SSTP Melaka HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Melaka HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP Melaka</div>
+				<p class="metaskool-world-description">Welcome to the SSTP Melaka HQ—a central hub in the metaverse designed by selected Melaka schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-melaka.html">More details</a>
+			</div>
+		</div>
+
+		<!-- JPN Sabah -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/11/JPN-Sabah-on-11-14-24-at-11.31-AM-1024x517.png" alt="JPN Sabah HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">JPN Sabah HQ</h2>
+				<div class="metaskool-world-creator">Creator: JPN Sabah</div>
+				<p class="metaskool-world-description">Welcome to the JPN Sabah HQ—a central hub in the metaverse designed by selected Sabah schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-sabah.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Johor -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/11/Screenshot-2024-11-19-195419-1024x498.png" alt="SSTP Johor HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Johor HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP Johor</div>
+				<p class="metaskool-world-description">Welcome to the SSTP Johor HQ—a central hub in the metaverse designed by selected Johor schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-johor.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Kuala Lumpur -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/12/Screenshot-2024-12-12-170839-1024x425.png" alt="SSTP Kuala Lumpur HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Kuala Lumpur HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP Kuala Lumpur</div>
+				<p class="metaskool-world-description">Welcome to the SSTP Kuala Lumpur HQ—a central hub in the metaverse designed by selected Kuala Lumpur schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-kuala-lumpur.html">More details</a>
+			</div>
+		</div>
+
+		<!-- JPN Sarawak -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2024/12/Screenshot-2024-12-12-171011-1024x465.png" alt="JPN Sarawak HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">JPN Sarawak HQ</h2>
+				<div class="metaskool-world-creator">Creator: JPN Sarawak</div>
+				<p class="metaskool-world-description">Welcome to the JPN Sarawak HQ—a central hub in the metaverse designed by selected Sarawak schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-sarawak.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Selangor -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2025/05/image-min-1024x524.png" alt="SSTP Selangor HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Selangor HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP Selangor</div>
+				<p class="metaskool-world-description">Welcome to the SSTP Selangor HQ—a central hub in the metaverse designed by selected Selangor schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a gateway to immersive educational experiences.</p>
+				<a class="metaskool-more-button" href="sstp-selangor.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Kedah -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2025/06/sstp-jpn-kedah-metaskool-1024x530.jpeg" alt="SSTP Kedah HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Kedah HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP JPN Kedah</div>
+				<p class="metaskool-world-description">Welcome to the SSTP JPN Kedah HQ—a vibrant hub in the metaverse developed by selected schools across Kedah, where educators and students come together to explore, create, and innovate in immersive digital environments. This virtual HQ acts as a gateway to transformative learning experiences.</p>
+				<a class="metaskool-more-button" href="sstp-kedah.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Pahang -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2025/07/image-scaled.png" alt="SSTP Pahang HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Pahang HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP JPN Pahang</div>
+				<p class="metaskool-world-description">Welcome to the SSTP JPN Pahang HQ—an immersive metaverse hub designed by schools in Pahang. Held in Pekan, this space connects students and educators through interactive and collaborative virtual experiences.</p>
+				<a class="metaskool-more-button" href="sstp-pahang.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Negeri Sembilan -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2025/07/Screenshot-2025-07-25-at-4.43.36-PM-scaled.jpeg" alt="SSTP N9 HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Negeri Sembilan HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP JPN Negeri Sembilan</div>
+				<p class="metaskool-world-description">Step into the SSTP JPN Negeri Sembilan HQ—an immersive metaverse hub envisioned and brought to life by students and teachers trained during the MetaSkool ToT session. This virtual space reflects the creativity, collaboration, and digital confidence sparked over two days of hands-on exploration in Negeri Sembilan.</p>
+				<a class="metaskool-more-button" href="sstp-negeri-sembilan.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Perak -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://www.ukm.my/metaskool/wp-content/uploads/2025/08/Screenshot-2025-08-04-at-4.40.44-PM-scaled.png" alt="SSTP Perak HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Perak HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP JPN Perak</div>
+				<p class="metaskool-world-description">Experience the SSTP JPN Perak HQ—created by 12 teachers and 24 students from 12 schools during the MetaSkool ToT. This metaverse hub reflects the creativity and teamwork driving digital learning forward in line with Kementerian Pendidikan Malaysia’s vision.</p>
+				<a class="metaskool-more-button" href="sstp-perak.html">More details</a>
+			</div>
+		</div>
+
+		<!-- SSTP Pulau Pinang -->
+		<div class="metaskool-world-card">
+			<img class="metaskool-world-image" src="https://media.discordapp.net/attachments/1297615132616167498/1408661204280414310/image.png" alt="SSTP Pulau Pinang HQ">
+			<div class="metaskool-world-content">
+				<h2 class="metaskool-world-title">SSTP Pulau Pinang HQ</h2>
+				<div class="metaskool-world-creator">Creator: SSTP JPN Pulau Pinang</div>
+				<p class="metaskool-world-description">Step into the SSTP JPN Pulau Pinang HQ—a vibrant metaverse hub designed and built by students and teachers during the MetaSkool ToT session. This virtual space showcases the innovation, teamwork, and future-ready skills nurtured over two days of creative exploration in Pulau Pinang.</p>
+				<a class="metaskool-more-button" href="sstp-pulau-pinang.html">More details</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>
