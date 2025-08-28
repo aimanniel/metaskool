@@ -10,9 +10,33 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<style>
+	/* MetaSkool header styles (responsive with hamburger) */
+	.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 1rem;background:linear-gradient(90deg,var(--ukm-blue),#004080);color:#fff;position:relative}
+	.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
+	.metaskool-site-header .brand img{height:44px;width:auto}
+	.metaskool-site-header h1{font-size:1.05rem;margin:0;color:#fff;font-family:'Montserrat',sans-serif}
+	.metaskool-site-header .site-nav{display:flex;gap:0.5rem;align-items:center}
+	.metaskool-site-header .site-nav a{color:#fff;text-decoration:none;padding:0.45rem 0.6rem;border-radius:6px;font-weight:600}
+	.metaskool-site-header .site-nav a:hover{background:rgba(255,255,255,0.08)}
+	.menu-toggle{display:none;background:transparent;border:none;color:#fff;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+	.menu-toggle .hamburger{display:block;width:20px;height:2px;background:#fff;position:relative}
+	.menu-toggle .hamburger::before,.menu-toggle .hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:#fff}
+	.menu-toggle .hamburger::before{top:-6px}.menu-toggle .hamburger::after{top:6px}
+	@media(max-width:768px){
+		.metaskool-site-header{padding:0.75rem 1rem;align-items:flex-start}
+		.metaskool-site-header .brand{flex-direction:column;align-items:center;gap:0.5rem;text-align:center}
+		.metaskool-site-header .brand img{height:36px}
+		.metaskool-site-header h1{font-size:0.9rem;line-height:1.2}
+		.menu-toggle{display:flex;position:absolute;top:0.75rem;right:1rem}
+		.metaskool-site-header .site-nav{position:absolute;left:0;right:0;top:100%;background:linear-gradient(180deg,var(--ukm-blue),#003355);flex-direction:column;display:none;padding:0.25rem 0}
+		.metaskool-site-header .site-nav.open{display:flex}
+		.metaskool-site-header .site-nav a{padding:0.75rem 1rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.06)}
+	}
+
 		:root {
 			--ukm-blue: #003366;
 			--ukm-red: #c00;
+		}
 	body { background: #fff; font-family: 'Roboto', Arial, sans-serif; color: #333; margin:0; padding:0 }
 	.metaskool-container { padding: 4rem 0; max-width:1200px; margin:0 auto }
 	.metaskool-header { text-align:center; margin-bottom:2.5rem }
@@ -40,6 +64,23 @@
 	</style>
 </head>
 <body>
+<header class="metaskool-site-header">
+	<div class="brand">
+		<a href="/"><img src="https://www.ukm.my/strategi-ukm/wp-content/uploads/2023/10/NARATIF-BAHARU-UKM-LOGO-1.png" alt="UKM Logo"></a>
+		<h1>MetaSkool — SSTP Hubs</h1>
+	</div>
+	<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="hamburger"></span></button>
+	<nav class="site-nav" id="siteNav">
+		<a href="https://www.ukm.my/metaskool/">Home</a>
+		<a href="https://www.ukm.my/metaskool/#about">About</a>
+		<a href="https://www.ukm.my/metaskool/#latest">Latest</a>
+		<a href="https://www.ukm.my/metaskool/#team">Team</a>
+		<a href="https://www.ukm.my/metaskool/#objectives">Objectives</a>
+        <a href="https://www.ukm.my/metaskool/#stakeholders">Partners</a>
+        <a href="https://hub.metaskool.my">SSTP Hub</a>
+        <a href="https://www.ukm.my/metaskool/our-worlds-2/">Our Worlds</a>
+	</nav>
+</header>
 <div class="metaskool-container">
 	<header class="metaskool-header">
 		<h1>SSTP Hubs</h1>
@@ -224,6 +265,18 @@
     imgs.forEach(loadImg);
   }
 })();
+</script>
+<script>
+// header menu toggle
+document.addEventListener('DOMContentLoaded', function(){
+	const btn = document.querySelector('.menu-toggle');
+	const nav = document.getElementById('siteNav');
+	if(!btn || !nav) return;
+	btn.addEventListener('click', () => {
+		const open = nav.classList.toggle('open');
+		btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+	});
+});
 </script>
 </body>
 </html>
