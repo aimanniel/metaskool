@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+/* MetaSkool header styles (copied & simplified) */
+.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 1rem;border-bottom:4px solid var(--ukm-blue);background:#fff}
+.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
+.metaskool-site-header .brand img{height:44px;width:auto}
+.metaskool-site-header h1{font-size:1.1rem;margin:0;color:var(--ukm-blue);font-family:'Montserrat',sans-serif}
+.metaskool-site-header .site-nav{display:flex;gap:0.75rem;align-items:center}
+.metaskool-site-header .site-nav a{color:var(--ukm-blue);text-decoration:none;padding:0.45rem 0.75rem;border-radius:6px;font-weight:600}
+.metaskool-site-header .site-nav a:hover{background:var(--ukm-blue);color:#fff}
+@media(max-width:600px){ .metaskool-site-header{flex-direction:column;align-items:flex-start} }
+</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SSTP Negeri Sembilan - Placeholder</title>
@@ -12,4 +23,16 @@
 <p>This is a placeholder page. Replace with the Negeri Sembilan school list when ready.</p>
 <p><a href="Home.html">← Back to Hubs</a></p>
 </body>
-</html>
+
+<header class="metaskool-site-header">
+	<div class="brand">
+		<a href="/"><img src="https://www.ukm.my/pkk/wp-content/uploads/download/ukmlogo/ms/LogoRasmiUKM.png" alt="UKM Logo"></a>
+		<h1>MetaSkool — SSTP Negeri Sembilan</h1>
+	</div>
+	<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="hamburger"></span></button>
+	<nav class="site-nav" id="siteNav">
+		<a href="Home.html">Back to Home</a>
+	</nav>
+</header>
+
+<div class="metaskool-container">

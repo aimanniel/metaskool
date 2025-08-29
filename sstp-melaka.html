@@ -1,15 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SSTP Melaka - Placeholder</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
-<style>body{font-family:Roboto,Arial,sans-serif;margin:40px;color:#222}a{color:#0066cc}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Worlds | MetaSkool</title>
+    <!-- Preload fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome only when document is ready -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+    /* MetaSkool header styles (responsive with hamburger) */
+	.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 1rem;background:linear-gradient(90deg,var(--ukm-blue),#004080);color:#fff;position:relative}
+	.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
+	.metaskool-site-header .brand img{height:44px;width:auto}
+	.metaskool-site-header h1{font-size:1.05rem;margin:0;color:#fff;font-family:'Montserrat',sans-serif}
+	.metaskool-site-header .site-nav{display:flex;gap:0.5rem;align-items:center}
+	.metaskool-site-header .site-nav a{color:#fff;text-decoration:none;padding:0.45rem 0.6rem;border-radius:6px;font-weight:600}
+	.metaskool-site-header .site-nav a:hover{background:rgba(255,255,255,0.08)}
+	.menu-toggle{display:none;background:transparent;border:none;color:#fff;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+	.menu-toggle .hamburger{display:block;width:20px;height:2px;background:#fff;position:relative}
+	.menu-toggle .hamburger::before,.menu-toggle .hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:#fff}
+	.menu-toggle .hamburger::before{top:-6px}.menu-toggle .hamburger::after{top:6px}
+	@media(max-width:768px){
+		.metaskool-site-header{padding:0.75rem 1rem;align-items:flex-start}
+		.metaskool-site-header .brand{flex-direction:column;align-items:center;gap:0.5rem;text-align:center}
+		.metaskool-site-header .brand img{height:36px}
+		.metaskool-site-header h1{font-size:0.9rem;line-height:1.2}
+		.menu-toggle{display:flex;position:absolute;top:0.75rem;right:1rem}
+		.metaskool-site-header .site-nav{position:absolute;left:0;right:0;top:100%;background:linear-gradient(180deg,var(--ukm-blue),#003355);flex-direction:column;display:none;padding:0.25rem 0}
+		.metaskool-site-header .site-nav.open{display:flex}
+		.metaskool-site-header .site-nav a{padding:0.75rem 1rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.06)}
+	}
+        :root {
+            --ukm-blue: #003366;
+            --ukm-red: #c00;
+            --ukm-light-blue: #007bff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --section-bg-1: #ffffff;
+            --section-bg-2: #f8f9fa;
+            --card-hover-bg: #ffffff;
+        }
+        
+        body {
+            background: #fff;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .metaskool-container {
+            padding: 4rem 0;
+            background: #ffffff;
+            position: relative;
+            max-width:1200px; 
+            margin:0 auto;
+        }
+
+        .metaskool-container::before {
+            display: none;
+        }
+
+        .metaskool-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .metaskool-header h1 {
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--ukm-blue);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .metaskool-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--ukm-blue), var(--ukm-red));
+        }
+
+        .metaskool-worlds-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .metaskool-world-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,51,102,0.1);
+            box-sizing: border-box;
+        }
+
+        .metaskool-world-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            background: var(--card-hover-bg);
+            border-color: var(--ukm-red);
+        }
+
+        .metaskool-world-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .metaskool-world-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+            box-sizing: border-box;
+        }
+
+        .metaskool-world-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ukm-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .metaskool-world-creator {
+            display: inline-block;
+            background: var(--ukm-blue);
+            color: white;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            max-width: 100%;
+            white-space: normal;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 51, 102, 0.1);
+        }
+
+        /* Additional rule for very long creator names */
+        .metaskool-world-creator:has(span) {
+            font-size: 0.75rem;
+            padding: 0.4rem 1rem;
+        }
+
+        .metaskool-world-description {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .metaskool-play-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% - 0px);
+            background: linear-gradient(45deg, var(--ukm-blue) 0%, var(--ukm-light-blue) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 51, 102, 0.2);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+            margin-top: auto;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .metaskool-play-button:hover {
+            background: linear-gradient(45deg, var(--ukm-light-blue) 0%, var(--ukm-blue) 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 51, 102, 0.3);
+            text-decoration: none;
+        }
+
+        .metaskool-featured-card {
+            grid-column: 1 / -1;
+        }
+
+        .metaskool-featured-card .metaskool-world-content {
+            background: linear-gradient(135deg, var(--ukm-blue) 0%, #004080 100%);
+            border-radius: 0 0 4px 4px;
+            min-height: 300px;
+        }
+
+        .metaskool-featured-card .metaskool-world-title {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .metaskool-featured-card .metaskool-world-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .metaskool-featured-card .metaskool-world-creator {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
+
+        .metaskool-featured-card .metaskool-play-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .metaskool-featured-card .metaskool-play-button:hover {
+            background: white;
+            color: var(--ukm-blue);
+            border-color: white;
+        }
+
+        /* Video Button Styles */
+        .metaskool-world-image-container {
+            position: relative;
+        }
+
+        .metaskool-world-image-container .metaskool-video-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--ukm-blue);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .metaskool-world-image-container .metaskool-video-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .metaskool-container {
+                padding: 3rem 0;
+            }
+
+            .metaskool-header h1 {
+                font-size: 2rem;
+            }
+
+            .metaskool-worlds-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .metaskool-world-image {
+                height: 200px;
+            }
+
+            .metaskool-world-title {
+                font-size: 1.2rem;
+            }
+
+            .metaskool-featured-card .metaskool-world-title {
+                font-size: 1.5rem;
+            }
+
+            .metaskool-world-image-container .metaskool-video-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metaskool-container {
+                padding: 2rem 0;
+            }
+
+            .metaskool-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .metaskool-world-image {
+                height: 180px;
+            }
+
+            .metaskool-world-title {
+                font-size: 1.1rem;
+            }
+
+            .metaskool-featured-card .metaskool-world-title {
+                font-size: 1.3rem;
+            }
+
+            .metaskool-play-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .metaskool-fade-in {
+            animation: metaskoolFadeIn 0.6s ease-in;
+        }
+
+        @keyframes metaskoolFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .metaskool-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metaskool-modal.active {
+            display: flex;
+        }
+
+        .metaskool-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .metaskool-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .metaskool-video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .metaskool-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-<h1>SSTP Melaka (placeholder)</h1>
-<p>This is a placeholder page. Replace with the Melaka school list when ready.</p>
-<p><a href="Home.html">← Back to Hubs</a></p>
+<header class="metaskool-site-header">
+	<div class="brand">
+		<a href="/"><img src="https://www.ukm.my/strategi-ukm/wp-content/uploads/2023/10/NARATIF-BAHARU-UKM-LOGO-1.png" alt="UKM Logo"></a>
+		<h1>MetaSkool — SSTP Hubs</h1>
+	</div>
+	<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="hamburger"></span></button>
+	<nav class="site-nav" id="siteNav">
+		<a href="https://www.ukm.my/metaskool/">Home</a>
+		<a href="https://www.ukm.my/metaskool/#about">About</a>
+		<a href="https://www.ukm.my/metaskool/#latest">Latest</a>
+		<a href="https://www.ukm.my/metaskool/#team">Team</a>
+		<a href="https://www.ukm.my/metaskool/#objectives">Objectives</a>
+        <a href="https://www.ukm.my/metaskool/#stakeholders">Partners</a>
+        <a href="https://hub.metaskool.my">SSTP Hub</a>
+        <a href="https://www.ukm.my/metaskool/our-worlds-2/">Our Worlds</a>
+	</nav>
+</header>
+<div class="metaskool-container">
+    <header class="metaskool-header metaskool-fade-in">
+        <h1>SSTP JPN MELAKA</h1>
+    </header>
+
+    <div class="metaskool-worlds-grid">
+        <!-- SMK SERI TANJONG -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SMK SERI TANJONG.png" 
+                 alt="SMK SERI TANJONG" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK SERI TANJONG</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK SERI TANJONG</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK SERI TANJONG</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SMK-SERI-TANJONG-670a7121ddabf827a38b211c?share=1678805298829910157" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SK CHENG -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SK CHENG.png" 
+                 alt="SK CHENG" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SK CHENG</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SK CHENG</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SK CHENG</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SK-CHENG-670a7143b3597559d640c6f7?share=6879588457036810410" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SMK TUN TIJAH -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SMK TUN TIJAH.png" 
+                 alt="SMK TUN TIJAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK TUN TIJAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK TUN TIJAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK TUN TIJAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SMK-TUN-TIJAH-670a6fd69629ec4bdeefab9f?share=8636540637779785739" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SMK INFANT JESUS CONVENT -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SMK INFANT JESUS CONVENT.png" 
+                 alt="SMK INFANT JESUS CONVENT" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK INFANT JESUS CONVENT</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK INFANT JESUS CONVENT</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK INFANT JESUS CONVENT</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SMK-INFANT-JESUS-CONVENT-670a70ca420259677a2972f9?share=8569805839359114156" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SK PENDIDIKAN KHAS -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SK PENDIDIKAN KHAS.png" 
+                 alt="SK PENDIDIKAN KHAS" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SK PENDIDIKAN KHAS</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SK PENDIDIKAN KHAS</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SK PENDIDIKAN KHAS</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SK-PENDIDIKAN-KHAS-670a70fdb3597559d640c6de?share=7841014935959875103" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SK CHINCHIN -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SK CHINCHIN.png" 
+                 alt="SK CHINCHIN" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SK CHINCHIN</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SK CHINCHIN</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SK CHINCHIN</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SK-CHINCHIN-670a6f95420259677a297285?share=6733376965641878197" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SK KEM GERAK KHAS -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SK KEM GERAK KHAS.png" 
+                 alt="SK KEM GERAK KHAS" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SK KEM GERAK KHAS</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SK KEM GERAK KHAS</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SK KEM GERAK KHAS</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SK-KEM-GERAK-KHAS-670a7024ddabf827a38b2084?share=2058141382532781017" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- KOLEJ TINGKATAN 6 TUN FATIMAH -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/KOLEJ TINGKATAN 6 TUN FATIMAH.png" 
+                 alt="KOLEJ TINGKATAN 6 TUN FATIMAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">KOLEJ TINGKATAN 6 TUN FATIMAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">KOLEJ TINGKATAN 6 TUN FATIMAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — KOLEJ TINGKATAN 6 TUN FATIMAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-KOLEJ-TINGKATAN-6-TUN-FATIMAH-670a708db3597559d640c6a0?share=2326815902365662508" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SMK DATO' HAJI TALIB KARIM -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SMK DATO' HAJI TALIB KARIM.png" 
+                 alt="SMK DATO' HAJI TALIB KARIM" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK DATO' HAJI TALIB KARIM</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK DATO' HAJI TALIB KARIM</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK DATO' HAJI TALIB KARIM</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SMK-DATO-HAJI-TALIB-KARIM-670a7044420259677a2972c8?share=6412572418381028729" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SMS MUZAFFAR SHAH -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SMS MUZAFFAR SHAH.png" 
+                 alt="SMS MUZAFFAR SHAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMS MUZAFFAR SHAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMS MUZAFFAR SHAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMS MUZAFFAR SHAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SMS-MUZAFFAR-SHAH-670a70ac66f800a76f01e392?share=1492717708198683216" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <!-- SRA JAIM AL-FALAH (Note: This world may not be working properly) -->
+        <!-- <div class="metaskool-world-card metaskool-fade-in">
+            <img src="melaka-img/SRA JAIM AL-FALAH.png" 
+                 alt="SRA JAIM AL-FALAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SRA JAIM AL-FALAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SRA JAIM AL-FALAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SRA JAIM AL-FALAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-MELAKA-SRA-JAIM-AL-FALAH-670a7069420259677a2972f0?share=177620925453965319" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div> -->
+
+    </div>
+</div>
+
+<!-- Modal for Video -->
+<div class="metaskool-modal" id="videoModal">
+    <div class="metaskool-modal-content">
+        <button class="metaskool-modal-close" onclick="closeVideo()">&times;</button>
+        <div class="metaskool-video-container">
+            <iframe id="videoFrame" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add Font Awesome for the play icon
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+        document.head.appendChild(link);
+    }
+
+    function openVideo(videoId) {
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeVideo() {
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close modal on background click
+    document.getElementById('videoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVideo();
+        }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeVideo();
+        }
+    });
+</script>
+
+<!-- Lazy-load images: use a low-res placeholder, then load real image when near viewport -->
+<script>
+(function(){
+  const placeholder = 'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"></svg>';
+  const imgs = document.querySelectorAll('.metaskool-world-image');
+  imgs.forEach(img => {
+    if (!img.dataset.src) {
+      img.dataset.src = img.src; // store real src
+      img.src = placeholder; // tiny placeholder
+      img.loading = 'lazy';
+    }
+  });
+
+  function loadImg(img){
+    const src = img.dataset.src;
+    if (!src) return;
+    const newImg = new Image();
+    newImg.src = src;
+    newImg.decoding = 'async';
+    newImg.onload = () => {
+      img.src = src;
+    };
+    newImg.onerror = () => {
+      img.src = src; // try anyway on error
+    };
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadImg(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin: '200px'});
+    imgs.forEach(i => io.observe(i));
+  } else {
+    // no IntersectionObserver, load all
+    imgs.forEach(loadImg);
+  }
+})();
+</script>
+<script>
+// header menu toggle - enhanced version
+(function() {
+    function initHamburgerMenu() {
+        console.log('Initializing hamburger menu...');
+        
+        const btn = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('siteNav');
+        
+        console.log('Button found:', btn);
+        console.log('Nav found:', nav);
+        
+        if (!btn || !nav) {
+            console.error('Menu elements not found - btn:', btn, 'nav:', nav);
+            return;
+        }
+        
+        // Remove any existing event listeners
+        btn.replaceWith(btn.cloneNode(true));
+        const newBtn = document.querySelector('.menu-toggle');
+        
+        newBtn.addEventListener('click', function(e) {
+            console.log('Hamburger clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = nav.classList.contains('open');
+            console.log('Current state - open:', isOpen);
+            
+            if (isOpen) {
+                nav.classList.remove('open');
+                newBtn.setAttribute('aria-expanded', 'false');
+                console.log('Menu closed');
+            } else {
+                nav.classList.add('open');
+                newBtn.setAttribute('aria-expanded', 'true');
+                console.log('Menu opened');
+            }
+        });
+        
+        console.log('Hamburger menu initialized successfully');
+    }
+    
+    // Try multiple initialization methods
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+    } else {
+        initHamburgerMenu();
+    }
+    
+    // Backup initialization
+    window.addEventListener('load', initHamburgerMenu);
+    
+    // Also try with a small delay
+    setTimeout(initHamburgerMenu, 100);
+})();
+</script>
 </body>
 </html>

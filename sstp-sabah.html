@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+/* MetaSkool header styles (copied & simplified) */
+.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 1rem;background:linear-gradient(90deg,var(--ukm-blue),#004080);color:#fff;position:relative}
+.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
+.metaskool-site-header .brand img{height:44px;width:auto}
+.metaskool-site-header h1{font-size:1.05rem;margin:0;color:#fff;font-family:'Montserrat',sans-serif}
+.metaskool-site-header .site-nav{display:flex;gap:0.5rem;align-items:center}
+.metaskool-site-header .site-nav a{color:#fff;text-decoration:none;padding:0.45rem 0.6rem;border-radius:6px;font-weight:600}
+.metaskool-site-header .site-nav a:hover{background:rgba(255,255,255,0.08)}
+.menu-toggle{display:none;background:transparent;border:none;color:#fff;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer}
+.menu-toggle .hamburger{display:block;width:20px;height:2px;background:#fff;position:relative}
+.menu-toggle .hamburger::before,.menu-toggle .hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:#fff}
+.menu-toggle .hamburger::before{top:-6px}.menu-toggle .hamburger::after{top:6px}
+@media(max-width:900px){ .menu-toggle{display:flex} }
+@media(max-width:600px){ .metaskool-site-header .site-nav{position:absolute;left:0;right:0;top:100%;background:linear-gradient(180deg,var(--ukm-blue),#003355);flex-direction:column;display:none;padding:0.25rem 0} .metaskool-site-header .site-nav.open{display:flex} .metaskool-site-header .site-nav a{padding:0.75rem 1rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.06)} }
+</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JPN Sabah - Placeholder</title>
@@ -12,4 +28,16 @@
 <p>This is a placeholder page. Replace with the Sabah school list when ready.</p>
 <p><a href="Home.html">← Back to Hubs</a></p>
 </body>
-</html>
+
+<header class="metaskool-site-header">
+	<div class="brand">
+		<a href="/"><img src="https://www.ukm.my/pkk/wp-content/uploads/download/ukmlogo/ms/LogoRasmiUKM.png" alt="UKM Logo"></a>
+		<h1>MetaSkool — SSTP Sabah</h1>
+	</div>
+	<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="hamburger"></span></button>
+	<nav class="site-nav" id="siteNav">
+		<a href="Home.html">Back to Home</a>
+	</nav>
+</header>
+
+<div class="metaskool-container">
