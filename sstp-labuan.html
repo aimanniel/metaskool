@@ -718,60 +718,36 @@
 })();
 </script>
 <script>
-// header menu toggle - enhanced version
+// header menu toggle
 (function() {
-    function initHamburgerMenu() {
-        console.log('Initializing hamburger menu...');
-        
-        const btn = document.querySelector('.menu-toggle');
-        const nav = document.getElementById('siteNav');
-        
-        console.log('Button found:', btn);
-        console.log('Nav found:', nav);
-        
-        if (!btn || !nav) {
-            console.error('Menu elements not found - btn:', btn, 'nav:', nav);
-            return;
-        }
-        
-        // Remove any existing event listeners
-        btn.replaceWith(btn.cloneNode(true));
-        const newBtn = document.querySelector('.menu-toggle');
-        
-        newBtn.addEventListener('click', function(e) {
-            console.log('Hamburger clicked!');
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const isOpen = nav.classList.contains('open');
-            console.log('Current state - open:', isOpen);
-            
-            if (isOpen) {
-                nav.classList.remove('open');
-                newBtn.setAttribute('aria-expanded', 'false');
-                console.log('Menu closed');
-            } else {
-                nav.classList.add('open');
-                newBtn.setAttribute('aria-expanded', 'true');
-                console.log('Menu opened');
-            }
-        });
-        
-        console.log('Hamburger menu initialized successfully');
-    }
-    
-    // Try multiple initialization methods
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
-    } else {
-        initHamburgerMenu();
-    }
-    
-    // Backup initialization
-    window.addEventListener('load', initHamburgerMenu);
-    
-    // Also try with a small delay
-    setTimeout(initHamburgerMenu, 100);
+	function initMenu() {
+		const btn = document.querySelector('.menu-toggle');
+		const nav = document.getElementById('siteNav');
+		
+		if (!btn || !nav) {
+			console.log('Menu elements not found');
+			return;
+		}
+		
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+			const isOpen = nav.classList.contains('open');
+			
+			if (isOpen) {
+				nav.classList.remove('open');
+				btn.setAttribute('aria-expanded', 'false');
+			} else {
+				nav.classList.add('open');
+				btn.setAttribute('aria-expanded', 'true');
+			}
+		});
+	}
+	
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initMenu);
+	} else {
+		initMenu();
+	}
 })();
 </script>
 </body>
