@@ -1,43 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-/* MetaSkool header styles (copied & simplified) */
-.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 1rem;background:linear-gradient(90deg,var(--ukm-blue),#004080);color:#fff;position:relative}
-.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
-.metaskool-site-header .brand img{height:44px;width:auto}
-.metaskool-site-header h1{font-size:1.05rem;margin:0;color:#fff;font-family:'Montserrat',sans-serif}
-.metaskool-site-header .site-nav{display:flex;gap:0.5rem;align-items:center}
-.metaskool-site-header .site-nav a{color:#fff;text-decoration:none;padding:0.45rem 0.6rem;border-radius:6px;font-weight:600}
-.metaskool-site-header .site-nav a:hover{background:rgba(255,255,255,0.08)}
-.menu-toggle{display:none;background:transparent;border:none;color:#fff;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer}
-.menu-toggle .hamburger{display:block;width:20px;height:2px;background:#fff;position:relative}
-.menu-toggle .hamburger::before,.menu-toggle .hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:#fff}
-.menu-toggle .hamburger::before{top:-6px}.menu-toggle .hamburger::after{top:6px}
-@media(max-width:900px){ .menu-toggle{display:flex} }
-@media(max-width:600px){ .metaskool-site-header .site-nav{position:absolute;left:0;right:0;top:100%;background:linear-gradient(180deg,var(--ukm-blue),#003355);flex-direction:column;display:none;padding:0.25rem 0} .metaskool-site-header .site-nav.open{display:flex} .metaskool-site-header .site-nav a{padding:0.75rem 1rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.06)} }
-</style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SSTP Kedah - Placeholder</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
-<style>body{font-family:Roboto,Arial,sans-serif;margin:40px;color:#222}a{color:#0066cc}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Worlds | MetaSkool</title>
+    <!-- Preload fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome only when document is ready -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+    /* MetaSkool header styles (responsive with hamburger) */
+	.metaskool-site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 1rem;background:linear-gradient(90deg,var(--ukm-blue),#004080);color:#fff;position:relative}
+	.metaskool-site-header .brand{display:flex;align-items:center;gap:0.75rem}
+	.metaskool-site-header .brand img{height:44px;width:auto}
+	.metaskool-site-header h1{font-size:1.05rem;margin:0;color:#fff;font-family:'Montserrat',sans-serif}
+	.metaskool-site-header .site-nav{display:flex;gap:0.5rem;align-items:center}
+	.metaskool-site-header .site-nav a{color:#fff;text-decoration:none;padding:0.45rem 0.6rem;border-radius:6px;font-weight:600}
+	.metaskool-site-header .site-nav a:hover{background:rgba(255,255,255,0.08)}
+	.menu-toggle{display:none;background:transparent;border:none;color:#fff;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+	.menu-toggle .hamburger{display:block;width:20px;height:2px;background:#fff;position:relative}
+	.menu-toggle .hamburger::before,.menu-toggle .hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:#fff}
+	.menu-toggle .hamburger::before{top:-6px}.menu-toggle .hamburger::after{top:6px}
+	@media(max-width:768px){
+		.metaskool-site-header{padding:0.75rem 1rem;align-items:flex-start}
+		.metaskool-site-header .brand{flex-direction:column;align-items:center;gap:0.5rem;text-align:center}
+		.metaskool-site-header .brand img{height:36px}
+		.metaskool-site-header h1{font-size:0.9rem;line-height:1.2}
+		.menu-toggle{display:flex;position:absolute;top:0.75rem;right:1rem}
+		.metaskool-site-header .site-nav{position:absolute;left:0;right:0;top:100%;background:linear-gradient(180deg,var(--ukm-blue),#003355);flex-direction:column;display:none;padding:0.25rem 0}
+		.metaskool-site-header .site-nav.open{display:flex}
+		.metaskool-site-header .site-nav a{padding:0.75rem 1rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.06)}
+	}
+        :root {
+            --ukm-blue: #003366;
+            --ukm-red: #c00;
+            --ukm-light-blue: #007bff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --section-bg-1: #ffffff;
+            --section-bg-2: #f8f9fa;
+            --card-hover-bg: #ffffff;
+        }
+        
+        body {
+            background: #fff;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .metaskool-container {
+            padding: 4rem 0;
+            background: #ffffff;
+            position: relative;
+            max-width:1200px; 
+            margin:0 auto;
+        }
+
+        .metaskool-container::before {
+            display: none;
+        }
+
+        .metaskool-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .metaskool-header h1 {
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--ukm-blue);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .metaskool-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--ukm-blue), var(--ukm-red));
+        }
+
+        .metaskool-worlds-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .metaskool-world-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,51,102,0.1);
+            box-sizing: border-box;
+        }
+
+        .metaskool-world-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            background: var(--card-hover-bg);
+            border-color: var(--ukm-red);
+        }
+
+        .metaskool-world-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .metaskool-world-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+            box-sizing: border-box;
+        }
+
+        .metaskool-world-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ukm-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .metaskool-world-creator {
+            display: inline-block;
+            background: var(--ukm-blue);
+            color: white;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            max-width: 100%;
+            white-space: normal;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 51, 102, 0.1);
+        }
+
+        /* Additional rule for very long creator names */
+        .metaskool-world-creator:has(span) {
+            font-size: 0.75rem;
+            padding: 0.4rem 1rem;
+        }
+
+        .metaskool-world-description {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .metaskool-play-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% - 0px);
+            background: linear-gradient(45deg, var(--ukm-blue) 0%, var(--ukm-light-blue) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 51, 102, 0.2);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+            margin-top: auto;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .metaskool-play-button:hover {
+            background: linear-gradient(45deg, var(--ukm-light-blue) 0%, var(--ukm-blue) 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 51, 102, 0.3);
+            text-decoration: none;
+        }
+
+        .metaskool-featured-card {
+            grid-column: 1 / -1;
+        }
+
+        .metaskool-featured-card .metaskool-world-content {
+            background: linear-gradient(135deg, var(--ukm-blue) 0%, #004080 100%);
+            border-radius: 0 0 4px 4px;
+            min-height: 300px;
+        }
+
+        .metaskool-featured-card .metaskool-world-title {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .metaskool-featured-card .metaskool-world-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .metaskool-featured-card .metaskool-world-creator {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
+
+        .metaskool-featured-card .metaskool-play-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .metaskool-featured-card .metaskool-play-button:hover {
+            background: white;
+            color: var(--ukm-blue);
+            border-color: white;
+        }
+
+        /* Video Button Styles */
+        .metaskool-world-image-container {
+            position: relative;
+        }
+
+        .metaskool-world-image-container .metaskool-video-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--ukm-blue);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .metaskool-world-image-container .metaskool-video-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .metaskool-container {
+                padding: 3rem 0;
+            }
+
+            .metaskool-header h1 {
+                font-size: 2rem;
+            }
+
+            .metaskool-worlds-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .metaskool-world-image {
+                height: 200px;
+            }
+
+            .metaskool-world-title {
+                font-size: 1.2rem;
+            }
+
+            .metaskool-featured-card .metaskool-world-title {
+                font-size: 1.5rem;
+            }
+
+            .metaskool-world-image-container .metaskool-video-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metaskool-container {
+                padding: 2rem 0;
+            }
+
+            .metaskool-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .metaskool-world-image {
+                height: 180px;
+            }
+
+            .metaskool-world-title {
+                font-size: 1.1rem;
+            }
+
+            .metaskool-featured-card .metaskool-world-title {
+                font-size: 1.3rem;
+            }
+
+            .metaskool-play-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .metaskool-fade-in {
+            animation: metaskoolFadeIn 0.6s ease-in;
+        }
+
+        @keyframes metaskoolFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .metaskool-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metaskool-modal.active {
+            display: flex;
+        }
+
+        .metaskool-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .metaskool-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .metaskool-video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .metaskool-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-<h1>SSTP Kedah (placeholder)</h1>
-<p>This is a placeholder page. Replace with the Kedah school list when ready.</p>
-<p><a href="Home.html">← Back to Hubs</a></p>
-</body>
-
 <header class="metaskool-site-header">
 	<div class="brand">
-		<a href="/"><img src="https://www.ukm.my/pkk/wp-content/uploads/download/ukmlogo/ms/LogoRasmiUKM.png" alt="UKM Logo"></a>
-		<h1>MetaSkool — SSTP Kedah</h1>
+		<a href="/"><img src="https://www.ukm.my/strategi-ukm/wp-content/uploads/2023/10/NARATIF-BAHARU-UKM-LOGO-1.png" alt="UKM Logo"></a>
+		<h1>MetaSkool — SSTP Hubs</h1>
 	</div>
 	<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="hamburger"></span></button>
 	<nav class="site-nav" id="siteNav">
-		<a href="Home.html">Back to Home</a>
+		<a href="https://www.ukm.my/metaskool/">Home</a>
+		<a href="https://www.ukm.my/metaskool/#about">About</a>
+		<a href="https://www.ukm.my/metaskool/#latest">Latest</a>
+		<a href="https://www.ukm.my/metaskool/#team">Team</a>
+		<a href="https://www.ukm.my/metaskool/#objectives">Objectives</a>
+        <a href="https://www.ukm.my/metaskool/#stakeholders">Partners</a>
+        <a href="https://hub.metaskool.my">SSTP Hub</a>
+        <a href="https://www.ukm.my/metaskool/our-worlds-2/">Our Worlds</a>
 	</nav>
 </header>
-
 <div class="metaskool-container">
+    <header class="metaskool-header metaskool-fade-in">
+        <h1>SSTP Kedah</h1>
+    </header>
+
+    <div class="metaskool-worlds-grid">
+        <!-- MetaSkool HQ - Featured -->
+        <div class="metaskool-world-card metaskool-featured-card metaskool-fade-in">
+            <img src="https://www.ukm.my/metaskool/wp-content/uploads/2024/10/Screenshot-2024-10-26-152231-1024x390.png" 
+                 alt="MetaSkool HQ" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">MetaSkool HQ</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SSTP Kedah HQ</h2>
+                    <div class="metaskool-world-creator">Creator: MetaSkool HQ</div>
+                </div>
+                <p class="metaskool-world-description">
+                    Welcome to the SSTP Kedah HQ—a central hub in the metaverse designed by selected Kedah schools, where students and educators can explore, connect, and collaborate across various virtual worlds. This HQ serves as a portal to immersive educational experiences.                </p>
+                    <a href="https://www.spatial.io/s/SSTP-KEDAH-HQ-683075425cb1aba0ab6e6eb0?share=4701079623203169825" target="_blank" class="metaskool-play-button">Play Now</a>
+                </div>
+        </div>
+
+        <!-- School worlds for SSTP JPN Kedah -->
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK TUNKU SOFIAH.png" 
+                 alt="SMK TUNKU SOFIAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK TUNKU SOFIAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK TUNKU SOFIAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK TUNKU SOFIAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-TUNKU-SOFIAH-683075b2020a938bd2174d47?share=3007083669463980702" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK KEDAWANG.png" 
+                 alt="SMK KEDAWANG" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK KEDAWANG</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK KEDAWANG</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK KEDAWANG</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-KEDAWANG-683075f78e3c31fe47445da0?share=2879219145505073415" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK TENGKU LAKSAMANA.png" 
+                 alt="SMK TENGKU LAKSAMANA" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK TENGKU LAKSAMANA</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK TENGKU LAKSAMANA</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK TENGKU LAKSAMANA</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-TENGKU-LAKSAMANA-6830762e020a938bd2174ebd?share=7864113905639528624" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK SERI PANTAI.png" 
+                 alt="SMK SERI PANTAI" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK SERI PANTAI</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK SERI PANTAI</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK SERI PANTAI</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-SERI-PANTAI-683076568e3c31fe47445f33?share=6689548358780263226" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK BANDAR BUKIT KAYU HITAM.png" 
+                 alt="SMK BANDAR BUKIT KAYU HITAM" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK BANDAR BUKIT KAYU HITAM</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK BANDAR BUKIT KAYU HITAM</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK BANDAR BUKIT KAYU HITAM</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-BANDAR-BUKIT-KAYU-HITAM-6830767d020a938bd2174fcd?share=6873565291866024902" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK BANDAR BARU DARULAMAN.png" 
+                 alt="SMK BANDAR BARU DARULAMAN" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK BANDAR BARU DARULAMAN</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK BANDAR BARU DARULAMAN</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK BANDAR BARU DARULAMAN</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-BANDAR-BARU-DARULAMAN-68307736020a938bd2175304?share=864804857343416119" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/MAKTAB MAHMUD PADANG TERAP.png" 
+                 alt="MAKTAB MAHMUD PADANG TERAP" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">MAKTAB MAHMUD PADANG TERAP</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">MAKTAB MAHMUD PADANG TERAP</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — MAKTAB MAHMUD PADANG TERAP</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-MAKTAB-MAHMUD-PADANG-TERAP-6830775a8e3c31fe47446523?share=8124667973957277667" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK PADANG TERAP.png" 
+                 alt="SMK PADANG TERAP" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK PADANG TERAP</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK PADANG TERAP</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK PADANG TERAP</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-PADANG-TERAP-683566b2c66189bb03a50440?share=3062400073024347328" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK TUNKU TEMENGGUNG.png" 
+                 alt="SMK TUNKU TEMENGGUNG" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK TUNKU TEMENGGUNG</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK TUNKU TEMENGGUNG</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK TUNKU TEMENGGUNG</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-TUNKU-TEMENGGUNG-683077a28e3c31fe474467bb?share=5697523849809428868" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK SUNGAI TIANG.png" 
+                 alt="SMK SUNGAI TIANG" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK SUNGAI TIANG</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK SUNGAI TIANG</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK SUNGAI TIANG</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-SUNGAI-TIANG-683077c88e3c31fe47446856?share=1613692777076023843" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK CONVENT FATHER BARRE.png" 
+                 alt="SMK CONVENT FATHER BARRE" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK CONVENT FATHER BARRE</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK CONVENT FATHER BARRE</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK CONVENT FATHER BARRE</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-CONVENT-FATHER-BARRE-683077ec8e3c31fe47446939" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SM PENDIDIKAN KHAS VOKASIONAL MERBOK.png" 
+                 alt="SM PENDIDIKAN KHAS VOKASIONAL MERBOK" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SM PENDIDIKAN KHAS VOKASIONAL MERBOK</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SM PENDIDIKAN KHAS VOKASIONAL MERBOK</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SM PENDIDIKAN KHAS VOKASIONAL MERBOK</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SM-PENDIDIKAN-KHAS-VOKASIONAL-MERBOK-68356de2e66b592ddb4c5687?share=1106527780516157945" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK BALING.png" 
+                 alt="SMK BALING" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK BALING</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK BALING</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK BALING</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-BALING-683078358e3c31fe47446a37?share=2614359621530368627" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK JERAI.png" 
+                 alt="SMK JERAI" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK JERAI</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK JERAI</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK JERAI</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-JERAI-683078538e3c31fe47446adb?share=5495811201219605371" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SM AGAMA NAHDZAH.png" 
+                 alt="SM AGAMA NAHDZAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SM AGAMA NAHDZAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SM AGAMA NAHDZAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SM AGAMA NAHDZAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SM-AGAMA-NAHDZAH-683078a7fba39574f9ff8c73?share=6780646092815593006" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SM AGAMA SG PETANI.png" 
+                 alt="SM AGAMA SG PETANI" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SM AGAMA SG PETANI</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SM AGAMA SG PETANI</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SM AGAMA SG PETANI</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SM-AGAMA-SG-PETANI-6830792e8e3c31fe47447058?share=7182954741829348619" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/MAAHAD DINI SULTAN ABDUL HALIM.png" 
+                 alt="MAAHAD DINI SULTAN ABDUL HALIM" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">MAAHAD DINI SULTAN ABDUL HALIM</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">MAAHAD DINI SULTAN ABDUL HALIM</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — MAAHAD DINI SULTAN ABDUL HALIM</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-MAAHAD-DINI-SULTAN-ABDUL-HALIM-68307955020a938bd2175830?share=3357360259057252860" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK SULTAN BADLISHAH.png" 
+                 alt="SMK SULTAN BADLISHAH" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK SULTAN BADLISHAH</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK SULTAN BADLISHAH</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK SULTAN BADLISHAH</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-SULTAN-BADLISHAH-683079998e3c31fe474476d6" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+        <div class="metaskool-world-card metaskool-fade-in">
+            <img src="kedah-img/SMK TUNKU PANGLIMA BESAR.png" 
+                 alt="SMK TUNKU PANGLIMA BESAR" class="metaskool-world-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="metaskool-world-image-placeholder" style="display: none;">SMK TUNKU PANGLIMA BESAR</div>
+            <div class="metaskool-world-content">
+                <div class="metaskool-world-header">
+                    <h2 class="metaskool-world-title">SMK TUNKU PANGLIMA BESAR</h2>
+                    <div class="metaskool-world-creator">Creator: Students &amp; Teachers — SMK TUNKU PANGLIMA BESAR</div>
+                </div>
+                <a href="https://www.spatial.io/s/SSTP-KEDAH-SMK-TUNKU-PANGLIMA-BESAR-683079c98e3c31fe474478b8?share=7992941877142139258" target="_blank" class="metaskool-play-button">Play Now</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal for Video -->
+<div class="metaskool-modal" id="videoModal">
+    <div class="metaskool-modal-content">
+        <button class="metaskool-modal-close" onclick="closeVideo()">&times;</button>
+        <div class="metaskool-video-container">
+            <iframe id="videoFrame" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add Font Awesome for the play icon
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+        document.head.appendChild(link);
+    }
+
+    function openVideo(videoId) {
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeVideo() {
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close modal on background click
+    document.getElementById('videoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVideo();
+        }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeVideo();
+        }
+    });
+</script>
+
+<!-- Lazy-load images: use a low-res placeholder, then load real image when near viewport -->
+<script>
+(function(){
+  const placeholder = 'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"></svg>';
+  const imgs = document.querySelectorAll('.metaskool-world-image');
+  imgs.forEach(img => {
+    if (!img.dataset.src) {
+      img.dataset.src = img.src; // store real src
+      img.src = placeholder; // tiny placeholder
+      img.loading = 'lazy';
+    }
+  });
+
+  function loadImg(img){
+    const src = img.dataset.src;
+    if (!src) return;
+    const newImg = new Image();
+    newImg.src = src;
+    newImg.decoding = 'async';
+    newImg.onload = () => {
+      img.src = src;
+    };
+    newImg.onerror = () => {
+      img.src = src; // try anyway on error
+    };
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadImg(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin: '200px'});
+    imgs.forEach(i => io.observe(i));
+  } else {
+    // no IntersectionObserver, load all
+    imgs.forEach(loadImg);
+  }
+})();
+</script>
+<script>
+// header menu toggle
+(function() {
+	function initMenu() {
+		const btn = document.querySelector('.menu-toggle');
+		const nav = document.getElementById('siteNav');
+		
+		if (!btn || !nav) {
+			console.log('Menu elements not found');
+			return;
+		}
+		
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+			const isOpen = nav.classList.contains('open');
+			
+			if (isOpen) {
+				nav.classList.remove('open');
+				btn.setAttribute('aria-expanded', 'false');
+			} else {
+				nav.classList.add('open');
+				btn.setAttribute('aria-expanded', 'true');
+			}
+		});
+	}
+	
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initMenu);
+	} else {
+		initMenu();
+	}
+})();
+</script>
+</body>
+</html>
